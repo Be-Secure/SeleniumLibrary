@@ -51,7 +51,7 @@ from SeleniumLibrary.locators import ElementFinder
 from SeleniumLibrary.utils import LibraryListener, is_truthy, _convert_timeout
 
 
-__version__ = "6.0.0"
+__version__ = "6.1.0.dev1"
 
 
 class SeleniumLibrary(DynamicCore):
@@ -340,7 +340,9 @@ class SeleniumLibrary(DynamicCore):
 
     The default timeout these keywords use can be set globally either by
     using the `Set Selenium Timeout` keyword or with the ``timeout`` argument
-    when `importing` the library. See `time format` below for supported
+    when `importing` the library. If no default timeout is set globally, the
+    default is 5 seconds. If None is specified for the timeout argument in the
+    keywords, the default is used. See `time format` below for supported
     timeout syntax.
 
     == Implicit wait ==

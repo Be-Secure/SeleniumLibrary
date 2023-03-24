@@ -19,10 +19,11 @@ import inspect
 import os
 import token
 import warnings
+from io import StringIO
 from tokenize import generate_tokens
 
 from robot.api import logger
-from robot.utils import ConnectionCache, StringIO
+from robot.utils import ConnectionCache
 from selenium import webdriver
 from selenium.webdriver import FirefoxProfile
 
@@ -45,7 +46,6 @@ class WebDriverCreator:
         "ie": "ie",
         "internetexplorer": "ie",
         "edge": "edge",
-        "opera": "opera",
         "safari": "safari",
         "phantomjs": "phantomjs",
         "htmlunit": "htmlunit",
@@ -228,7 +228,7 @@ class WebDriverCreator:
         log_file = self._get_log_path(
             os.path.join(self.log_dir, "geckodriver-{index}.log")
         )
-        logger.info(f"Firefox driver log is always forced to to: {log_file}")
+        logger.trace(f"Firefox driver log is always forced to to: {log_file}")
         return log_file
 
     def create_headless_firefox(
@@ -285,7 +285,7 @@ class WebDriverCreator:
         remote_url,
         options=None,
         service_log_path=None,
-        executable_path="MicrosoftWebDriver.exe",
+        executable_path="msedgedriver",
     ):
         if remote_url:
             defaul_caps = webdriver.DesiredCapabilities.EDGE.copy()
@@ -305,29 +305,6 @@ class WebDriverCreator:
                 **desired_capabilities,
             )
         return webdriver.Edge(
-            service_log_path=service_log_path,
-            executable_path=executable_path,
-            **desired_capabilities,
-        )
-
-    def create_opera(
-        self,
-        desired_capabilities,
-        remote_url,
-        options=None,
-        service_log_path=None,
-        executable_path="operadriver",
-    ):
-        if remote_url:
-            defaul_caps = webdriver.DesiredCapabilities.OPERA.copy()
-            desired_capabilities = self._remote_capabilities_resolver(
-                desired_capabilities, defaul_caps
-            )
-            return self._remote(desired_capabilities, remote_url, options=options)
-        if not executable_path:
-            executable_path = self._get_executable_path(webdriver.Opera)
-        return webdriver.Opera(
-            options=options,
             service_log_path=service_log_path,
             executable_path=executable_path,
             **desired_capabilities,

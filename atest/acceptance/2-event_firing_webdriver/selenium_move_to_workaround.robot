@@ -14,19 +14,19 @@ ${CTRL_OR_COMMAND}    ${EMPTY}
 
 *** Test Cases ***
 Selenium move_to workaround Click Element At Coordinates
-    [Documentation]    LOG 1:5 DEBUG  Workaround for Selenium 3 bug.
+    [Documentation]    LOG 1:6 DEBUG  Workaround for Selenium 3 bug.
     Click Element At Coordinates    id:some_id    4    4
 
 Selenium move_to workaround Scroll Element Into View
-    [Documentation]    LOG 1:4 DEBUG  Workaround for Selenium 3 bug.
+    [Documentation]    LOG 1:5 DEBUG  Workaround for Selenium 3 bug.
     Scroll Element Into View    id:some_id
 
 Selenium move_to workaround Mouse Out
-    [Documentation]    LOG 1:5 DEBUG  Workaround for Selenium 3 bug.
+    [Documentation]    LOG 1:6 DEBUG  Workaround for Selenium 3 bug.
     Mouse Out    id:some_id
 
 Selenium move_to workaround Mouse Over
-    [Documentation]    LOG 1:5 DEBUG  Workaround for Selenium 3 bug.
+    [Documentation]    LOG 1:6 DEBUG  Workaround for Selenium 3 bug.
     Mouse Over    id:some_id
 
 Click Element
@@ -38,7 +38,7 @@ Click Element
 Double Click Element
     [Documentation]    LOG 1 Double clicking element 'doubleClickButton'.
     [Setup]    Initialize Page For Click Element
-    [Tags]    Known Issue Safari    Known Issue Firefox
+    [Tags]    Known Issue Safari
     Double Click Element    doubleClickButton
     Element Text Should Be    output    double clicked
 
@@ -46,7 +46,7 @@ Click Element Action Chain
     [Tags]    NoGrid
     [Documentation]
     ...    LOB SETUP:1 INFO        Clicking 'singleClickButton' using an action chain.
-    ...    LOG 1:6 DEBUG GLOB: *actions {"actions": [{*
+    ...    LOG 1:7 DEBUG GLOB: *actions {"actions": [{*
     [Setup]    Initialize Page For Click Element
     Click Element    singleClickButton      action_chain=True
     Element Text Should Be    output    single clicked
@@ -82,7 +82,7 @@ Drag and Drop
     Element Text Should Be    id=droppable    Dropped!
 
 Drag and Drop by Offset
-    [Tags]    Known Issue Firefox    Known Issue Internet Explorer    Known Issue Safari
+    [Tags]    Known Issue Internet Explorer    Known Issue Safari
     [Setup]    Go To Page "javascript/drag_and_drop.html"
     Element Text Should Be    id=droppable    Drop here
     Drag and Drop by Offset    id=draggable    ${1}    ${1}
@@ -256,7 +256,7 @@ Click Element Action Chain and modifier
     [Setup]    Initialize Page For Click Element With Modifier
     Click Element    Button    modifier=CTRL    action_chain=True
     Element Text Should Be    output    CTRL click
-    
+
 *** Keywords ***
 Initialize Page For Click Element
     [Documentation]    Initialize Page
